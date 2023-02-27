@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js array</title>
+</head>
+<body>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        //Sugeneruokite masyvą, kurio reikšmės atsitiktinės raidės A, B, C ir D, o ilgis 200. Suskaičiuokite kiek yra kiekvienos raidės.
+
+        let skaiciuMasyvas = []
+        let raidziuMasyvas = []
+        let countA = 0
+        let countB = 0
+        let countC = 0
+        let countD = 0
+
+        for (let i = 0; i < 200; i++) {
+            skaiciuMasyvas.push(rand(0, 3));
+        }
+        for (let i = 0; i < skaiciuMasyvas.length; i++) {
+          if (skaiciuMasyvas[i] === 0)  {
+            raidziuMasyvas.push('A')
+            countA++;
+          }
+          if (skaiciuMasyvas[i] === 1)  {
+            raidziuMasyvas.push('B')
+            countB++;
+          }
+          if (skaiciuMasyvas[i] === 2)  {
+            raidziuMasyvas.push('C')
+            countC++;
+          }
+          if (skaiciuMasyvas[i] === 3)  {
+            raidziuMasyvas.push('D')
+            countD++;
+          }
+          
+        }
+        console.log('Raidziu masyvas:',raidziuMasyvas);
+        console.log('Raidziu A yra:',countA);
+        console.log('Raidziu B yra:',countB);
+        console.log('Raidziu C yra:',countC);
+        console.log('Raidziu D yra:',countD);
+
+        //Išrūšiuokite 1 uždavinio masyvą pagal abecėlę.
+
+        raidziuMasyvas.sort();
+        console.log(raidziuMasyvas);
+
+        //Sugeneruokite 3 masyvus pagal 1 uždavinio sąlygą. Sudėkite masyvus, sudėdami reikšmes pagal atitinkamus indeksus. Paskaičiuokite kiek unikalių (po vieną, nesikartojančių) reikšmių ir kiek unikalių kombinacijų gavote. Pavyzdžiui: Unikalios reikšmės (3): ['ABC', 'BAC', 'DAB', 'AAA']; Unikali kombinacija masyve (AAA): ['ABC', 'ABC', 'ABC', 'AAA'];
+        
+        const stringas = 'ABCD';
+        const pirmasMasyvas = [];
+        const antrasMasyvas = [];
+        const treciasMasyvas = [];
+
+        for(let i = 0; i < 200; i++) {
+            let raide = stringas[rand(0, stringas.length - 1)]
+            pirmasMasyvas.push(raide);
+
+            raide = stringas[rand(0, stringas.length - 1)]
+            antrasMasyvas.push(raide);
+
+            raide = stringas[rand(0, stringas.length - 1)]
+            treciasMasyvas.push(raide);
+        }
+        //console.log('pirmas masyvas: ', pirmasMasyvas);
+        //console.log('antras masyvas: ', antrasMasyvas);
+        //console.log('trecias masyvas: ', treciasMasyvas);
+
+        const masyvas = [];
+        for(let i = 0; i < pirmasMasyvas.length; i++) {
+            masyvas.push(pirmasMasyvas[i] + antrasMasyvas[i] + treciasMasyvas[i]);
+        }
+        console.log(masyvas);
+
+
+        //Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 100 iki 999. Masyvų ilgiai 100. Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).
+
+        let numArray1 = [];
+        
+        let numArray2 = [];
+        
+       // const masyvas = [];
+
+       // while(masyvas.length <= 100) {
+        //    if(!check)
+         //   skaiciuMasyvas.push()
+
+       // }
+        for (let i = 0; i < 100; i++) {
+            let number = rand(100,999)
+            let check = numArray1.includes(number)
+            if (check === false) {
+                numArray1.push(number)
+            } else {
+                while (check === true) {
+                    number = rand(100,999)
+                    check = numArray1.includes(number)
+                    if (check === false) {
+                        numArray1.push(number)
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < 100; i++) {
+            let number = rand(100,999)
+            let check = numArray2.includes(number)
+            if (check === false) {
+                numArray2.push(number)
+            } else {
+                while (check === true) {
+                    number = rand(100,999)
+                    check = numArray2.includes(number)
+                    if (check === false) {
+                        numArray2.push(number)
+                    }
+                }
+            }
+        }
+        console.log('Pirmas masyvas su unikaliomis reiksmemis: ', numArray1);
+        console.log('Antras masyvas su unikaliomis reiksmemis: ', numArray2);
+
+        //Sugeneruokite masyvą, kuris būtų sudarytas iš reikšmių, kurios yra pirmame 4 uždavinio masyve, bet nėra antrame 4 uždavinio masyve.
+
+        let numArray3 = [];
+        for (let i = 0; i < numArray1.length; i++) {
+            let number = numArray1[i]
+            let check = numArray2.includes(number)
+            if (check === false) {
+                numArray3.push(number);
+            }
+        }
+        console.log('Masyvas is reiksmiu kurios yra pirmame masyve, bet nera antrame: ', numArray3)
+
+        //Sugeneruokite masyvą iš elementų, kurie kartojasi abiejuose 4 uždavinio masyvuose.
+
+        let numArray4 = [];
+        for (let i = 0; i < numArray1.length; i++) {
+            let number = numArray1[i]
+            let check = numArray2.includes(number)
+            if (check === true) {
+                numArray4.push(number);
+            }
+        }
+        console.log('Masyvas is reiksmiu kurios kartojasi abejuose masyvuose: ', numArray4)
+
+
+
+
+
+    </script>
+</body>
+</html>
